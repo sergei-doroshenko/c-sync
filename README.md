@@ -16,7 +16,19 @@ git clone https://github.com/sergei-doroshenko/c-sync
 cd c-sync
 ```
 
-2. Create a symbolic link to make the script globally available:
+2. Create your configuration file:
+```bash
+cp config.env.example config.env
+```
+
+3. Edit config.env and set your configuration:
+- `BACKUP_BUCKET`: Your S3 bucket name
+- `PROFILE`: Your AWS CLI profile name
+- `PATHTOREMOVE`: Base path to remove from local paths when creating S3 paths
+
+Note: The config.env file must be in the same directory as the script.
+
+4. Create a symbolic link to make the script globally available:
 ```bash
 sudo ln -s $(pwd)/csync.sh /usr/local/bin/c-sync
 ```

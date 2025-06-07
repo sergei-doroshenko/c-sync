@@ -1,10 +1,30 @@
 #!/bin/bash
 set -euo pipefail
 
-# Configuration
-readonly BACKUP_BUCKET="REPLACE_ME"
-readonly PROFILE="REPLACE_ME"
-readonly PATHTOREMOVE="REPLACE_ME"
+# Get script directory and load configuration
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+CONFIG_FILE="$SCRIPT_DIR/config.env"
+
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    echo "Error: Configuration file not found at: $CONFIG_FILE" >&2
+    echo "Please ensure config.env exists in the same directory as the script." >&2
+    exit 1
+fi
+
+# Read configuration
+source "$CONFIG_FILE"
+
+# Validate required configuration
+if [[ -z "${BACKUP_BUCKET:-}" ]] || [[ -z "${PROFILE:-}" ]] || [[ -z "${PATHTOREMOVE:-}" ]]; then
+    echo "Error: Missing required configuration in $CONFIG_FILE" >&2
+    echo "Required variables: BACKUP_BUCKET, PROFILE, PATHTOREMOVE" >&2
+    exit 1
+fi
+
+# Make configuration readonly after loading
+readonly BACKUP_BUCKET
+readonly PROFILE
+readonly PATHTOREMOVE
 
 # Show error message
 show_error() {
