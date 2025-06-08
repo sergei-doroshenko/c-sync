@@ -20,3 +20,6 @@ Thumbs.db
 # Temporary files
 *.log
 *.tmp
+
+# Temporary directory
+tmp/
