@@ -1,4 +1,18 @@
 #!/bin/bash
+#
+# c-sync: AWS S3 Backup and Sync Utility
+# A command-line utility for backing up and syncing files with AWS S3.
+#
+# Author: Sergei Doroshenko
+# Email: 6823298@gmail.com
+# GitHub: https://github.com/sergei-doroshenko
+# LinkedIn: https://www.linkedin.com/in/sergei-doroshenko
+#
+# Repository: https://github.com/sergei-doroshenko/c-sync
+# Created: June 8, 2025
+# License: Apache License 2.0
+#
+
 set -euo pipefail
 
 # Get script directory and load configuration
